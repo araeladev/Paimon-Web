@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paimon - Discord Bot</title>
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .add-to-server-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #5865F2;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-server-btn:hover {
+            background-color: #717cf3;
+        }
+
+
+        .header {
+            background-color: #2a2a2a;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            color: #f6dbb8; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-switcher img {
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .language-switcher img:hover {
+            border-color: #f6dbb8;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .tabs > div {
+            padding: 15px 30px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #444;
+            color: #bbb;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tabs > div:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .active-tab {
+            background-color: #f6dbb8; 
+            color: #1e1e1e;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-image: "";
+            background-color: #2a2a2a;
+            border-radius: 5px;
+            margin: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .active-content {
+            display: block;
+        }
+        
+        
+        .ab-container {
+            border: 2px solid #f6dbb8; 
+            border-radius: 10px;
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .ab-server {
+            margin-top: 50px;
+            border: 2px solid #9008cf; 
+            border-radius: 10px;
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .ab-ver {
+            text-align: left;
+            font-size: x-small;
+        }
+
+
+        #easter-egg-image {
+            position: relative;
+            bottom: -23px; 
+            left: 466px; 
+            width: 15px; 
+            height: 15px;
+            border-radius: 50%; 
+        }
+
+
+        #creditsContent {
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 20px;
+            background-image: "https://file.garden/ZSGhSGTvf253N2gr/Fun/Adivinar_Perdido.jpg";
+            background-color: #121212; 
+            color: #fff; 
+        }
+
+        .credits-section {
+            border: 2px solid #f6dbb8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-image: "https://file.garden/ZSGhSGTvf253N2gr/Fun/Adivinar_Perdido.jpg";
+            background-color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .credits-section img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .credits-section p {
+            margin: 0;
+            flex-grow: 1; 
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            display: inline-block;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        .news-container {
+            display: flex;
+            font-size: 21px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-item {
+            border: 2px solid #f6dbb8; 
+            border-radius: 10px;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .news-item img {
+            position: sticky;
+            bottom: 15px; 
+            left: 500px; 
+            max-width: 50%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .news-item h3 {
+            margin-top: 0;
+            color: #f6dbb8;
+        }
+
+        #headerNews {
+            border-radius: 5px; 
+            max-width: 100%;
+        }
+
+        .gacha-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .gacha-banner {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 2px solid #f6dbb8; 
+        }
+
+        .gacha-banner img {
+            max-width: 60%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .gacha-banner h3 {
+            margin-top: 0;
+            color: #f6dbb8;
+        }
+
+        .gacha-banner p {
+            margin: 5px 0;
+            color: #bbb;
+        }
+
+        .gacha-section {
+            margin-top: 20px;
+        }
+
+        .gacha-section h2 {
+            color: #f6dbb8;
+        }
+
+        #gacha-Icon {
+            position: relative;
+            bottom: 550px; 
+            left: -580px; 
+            width: 70px; 
+            height: 70px;
+            border-radius: 80%; 
+            vertical-align: middle;
+            margin-bottom: -90px;
+        
+        }
+
+        #gacha-Paimon-Icon {
+            position: relative;
+            bottom: 320px; 
+            left: -780px; 
+            width: 256px; 
+            height: 256px;
+            border-radius: 1%; 
+            vertical-align: middle;
+            margin-bottom: -400px;
+        
+        }
+
+
+        .patreon-container {
+            border: 2px solid #b09cea; 
+            border-radius: 10px;
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .patreon-container h3 {
+            margin-top: 0;
+            color: #b09cea;
+        }
+
+        .patreon-container p {
+            color: #bbb;
+        }
+
+
+        .support-image {
+            width: 60%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .tiers {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 200px;
+            padding: 0;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .tier {
+            flex: 1;
+            margin: 0;
+        }
+
+        .tier h3 {
+            text-align: center;
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+
+        .tier ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tier li {
+            margin: 10px 0;
+            white-space: nowrap;
+        }
+
+        .patreon-buttons {
+            margin-top: 1px;
+            display: flex;
+            justify-content: center; 
+            gap: 360px;
+        }
+
+        .patreon-button {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .patreon-button:hover {
+            transform: scale(1.1);
+        }
+
+
+
+        .roadmap-container {
+            border: 2px solid #f6dbb8; 
+            border-radius: 10px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .roadmap-container h3 {
+            margin-top: 0;
+            color: #f6dbb8;
+        }
+
+        .roadmap-item {
+            margin-bottom: 15px;
+        }
+
+        .roadmap-item h4 {
+            margin: 5px 0;
+            font-size: 55px;
+            color: #f6dbb8;
+        }
+
+        .roadmap-item p {
+            color: #bbb;
+        }
+
+        .roadmapPicture {
+            width: 70%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2a2a2a;
+            color: #bbb;
+            position: sticky;
+            bottom: 0;
+            width: 97.88%;
+        }
+
+        .footer a {
+            font-size: 18px;
+            color: #f6dbb8;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+        
+        #bottomLeftIcon {
+            position: absolute;
+            bottom: 13px; 
+            left: 20px; 
+            width: 40px; 
+            height: 40px;
+            border-radius: 50%; 
+            object-fit: cover;
+            z-index: 1000; 
+        }
+
+
+        .status-button {
+            display: inline-block;
+            background-color: #444;
+            color: #bbb;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 0 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .status-button:hover {
+            background-color: #555;
+        }
+
+        .trello-button {
+            display: inline-block;
+            background-color: #444;
+            color: #bbb;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 0 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .trello-button:hover {
+            background-color: #555;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="https://discord.com/application-directory/819072036152279091" class="add-to-server-btn" id="addToServerBtn" data-lang="addToServer">
+            <span id="buttonText">Add me to your Server!</span>
+        </a>
+        Paimon
+        <div class="language-switcher" id="languageSwitcher">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/flag_us.png" alt="English" id="englishFlag">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/flag_es.png" alt="Spanish" id="spanishFlag">
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div id="newsTab" class="active-tab">News</div>
+        <div id="patreonTab">Patreon</div>
+        <a id="trelloTab" class="trello-button" href='https://trello.com/b/s3Fdr28l/paimon'>
+            Trello
+        </a> 
+        <div id="aboutTab">About Me</div>
+        <div id="creditsTab">Credits</div>
+    </div>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="newsContent" class="tab-content active-content">
+        
+        
+        <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Estrellas_2.gif" alt="Header-News" id="headerNews">
+        <h2>News:</h2>
+        <div class="news-container" id="newsContainer"></div>
+    </div>
+
+
+    <div id="patreonContent" class="tab-content">
+        <div class="patreon-container">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Patreon.jpg" alt="Patreon Picture" class="support-image">
+            <h2 id="PatreonSupp_1">Support me and Paimon's development!</h2>
+            <p id="PatreonSupp_2">By supporting me on Patreon, you help keep the development going! And you get some cool stuff listed here:</p>
+            
+            <div class="tiers">
+                <div class="tier">
+                    <h3>Paimon Supporter</h3>
+                    <ul>
+                        <li id="PaiSupporter_1">● Access to the newest features earlier than anyone!</li>
+                        <li id="PaiSupporter_2">● Access to the beta channels in the official server!</li>
+                        <li id="PaiSupporter_3">● Access to all my Patreon posts!</li>
+                    </ul>
+                </div>
+                <div class="tier">
+                    <h3>Paimon Plus</h3>
+                    <ul>
+                        <li id="PaiPlus_1">● Access to Paimon Plus (Permanent access)</li>
+                        <li id="PaiPlus_2">● Priority access to all the Paimon Supporter perks.</li>
+                        <li id="PaiPlus_3">● Support even further Paimon's development!</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="patreon-buttons">
+                <a href="https://www.patreon.com/araeladev/membership" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Placeholders/Icon_Emoji_Paimon%2527s_Paintings_01_Paimon_2.webp" alt="Support me on Patreon" class="patreon-button">
+                </a>
+                <a href="https://www.patreon.com/araeladev/membership" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Placeholders/Icon_Emoji_Paimon%2527s_Paintings_01_Paimon_6.webp" alt="Support me on Patreon" class="patreon-button">
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="creditsContent" class="tab-content">
+        <h2>Credits:</h2>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Araela.png" alt="Araela">
+            <p><strong>Araela</strong><br>Main Developer, Main Designer, Digital Designer, Tester and Translator.</p>
+            <div class="social-links">
+                <a href="https://x.com/Araela_" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+                <a href="https://github.com/araeladev" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.youtube.com/@araela_" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Youtube_logo.png" alt="YouTube">
+                </a>
+                <a href="https://www.twitch.tv/araela_" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Twitch_logo.png" alt="Twitch">
+                </a>
+            
+            
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Pandawan.png" alt="Stelary_pandawan">
+            <p><strong>Stelary_pandawan</strong><br>Command Designer and Development Helper.</p>
+            <div class="social-links">
+                <a href="https://x.com/Vincent_T_Reix" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+                <a href="https://github.com/ZePandawan" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/github.png" alt="GitHub">
+                </a>
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Yukii.png" alt="Yuki_judai">
+            <p><strong>Yukii_judai</strong><br>Digital Designer and Tester.</p>
+            <div class="social-links">
+                <a href="https://x.com/Yukii_Judai" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Kaworu.png" alt="Kaworu_langley">
+            <p><strong>Kaworu_langley</strong><br>System Designer, Tester and Early Paimon Supporter.</p>
+            <div class="social-links">
+                <a href="https://x.com/KaworuLangley6" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Manuel2357.png" alt="Manuel2357">
+            <p><strong>Manuel2357</strong><br>Command Designer, Tester and Early Paimon Supporter.</p>
+            <div class="social-links">
+                <a href="https://x.com/manuelrm2357" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+                </a>
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_RetroModeler.png" alt="Retromodelerua64">
+            <p><strong>Retromodelerua64</strong><br>Development Helper, Tester and Early Paimon Supporter.</p>
+            <div class="social-links">
+                <a href="https://x.com/modeler64" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+                <a href="https://www.artstation.com/retromodeler64" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/ArtStation_logo.png" alt="ArtStation">
+                </a>
+                <a href="https://www.youtube.com/@retromodeler64" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Youtube_logo.png" alt="YouTube">
+                </a>
+                <a href="https://www.instagram.com/retromodeler64/" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Instagram_logo.png" alt="Instagram">
+                </a>
+            </div>
+        </div>
+        
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Gracovitz.png" alt="Gracovitz">
+            <p><strong>Gracovitz</strong><br>Tester.</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@gracovitz4303" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Youtube_logo.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    
+        <div class="credits-section">
+            <img src="https://file.garden/ZSGhSGTvf253N2gr/web/Credits_Jupalo.png" alt="Gracovitz">
+            <p><strong>Jupalo90</strong><br>Tester.</p>
+            <div class="social-links">
+                <a href="https://x.com/Jupalo90163383" target="_blank">
+                    <img src="https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png" alt="Twitter">
+                </a>
+            </div>
+        </div>
+    
+    
+    </div>
+
+    <div id="aboutContent" class="tab-content">
+        <h2>About Me:</h2>
+        <div class="ab-container">
+            <p id="ab-description">I started Paimon's development back in 2021 as a fun side project for the funsies, but since then Paimon became an actual project with so much new features such as a fully functional profile system, TierMaker, an almost 1:1 representation of GI's gacha and much more. So what are you waiting for? Click on that big shiny button and add her to your own server!</p>
+        </div>    
+        <div class = "ab-server">   
+            <h3>And if you need extra help, join my official server!</h3>
+            <iframe src="https://discord.com/widget?id=627594589334667275&theme=dark" width="650" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                <img src="https://file.garden/ZSGhSGTvf253N2gr/web/easter_egg.gif" alt="Click me!", id="easter-egg-image">
+            </a>
+            </div>
+        <div class = "ab-ver">V:1.0.0.P:1 - 4/11/2024</div>
+        </div>
+        
+          
+    
+    
+    </div>
+
+    <div id="roadmapContent" class="tab-content">
+        <h2>Roadmap:</h2>
+        <div class="roadmap-container">
+            <div class="roadmap-item">
+                <h4>2025 - First Half</h4>
+                <p>Placeholder... (If you're seeing this in release, congrats for reaching this tab but this hasn't released yet!)</p>
+                <img src="https://file.garden/ZSGhSGTvf253N2gr/idk.png" class="roadmapPicture">
+            </div>
+            <div class="roadmap-item">
+                <h4>2025 - Second Half</h4>
+                <p>Placeholder... (If you're seeing this in release, congrats for reaching this tab but this hasn't released yet!)</p>
+                <img src="https://file.garden/ZSGhSGTvf253N2gr/idk.png" class="roadmapPicture">
+            </div>
+       
+            <div class="roadmap-item">
+                <h4>In the future...</h4>
+                <p>Paimon is still cooking!</p>
+            </div>
+       
+        </div>
+    </div>
+
+    
+
+
+    <div class="footer">
+        <a href="https://github.com/araeladev/Paimon/blob/main/PrivacyPolicy">Privacy Policy</a> |
+        <a href="https://github.com/araeladev/Paimon/blob/main/ToS">Terms of Service</a>
+        <img src="https://file.garden/ZSGhSGTvf253N2gr/web/default_icon.png" alt="Icon" id="bottomLeftIcon">
+    </div>
+
+    <script>
+        document.getElementById("aboutTab").addEventListener("click", function() {
+            switchTab("aboutTab", "aboutContent");
+        });
+
+        document.getElementById("creditsTab").addEventListener("click", function() {
+            switchTab("creditsTab", "creditsContent");
+        });
+
+        document.getElementById("newsTab").addEventListener("click", function() {
+            switchTab("newsTab", "newsContent");
+        });
+
+        document.getElementById("patreonTab").addEventListener("click", function() {
+            switchTab("patreonTab", "patreonContent");
+        });
+
+        document.getElementById("roadmapTab").addEventListener("click", function() {
+            switchTab("roadmapTab", "roadmapContent");
+        });
+
+        
+        function switchTab(tabId, contentId) {
+            const tabs = document.querySelectorAll('.tabs > div');
+            const contents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+            contents.forEach(content => content.classList.remove('active-content'));
+
+            document.getElementById(tabId).classList.add('active-tab');
+            document.getElementById(contentId).classList.add('active-content');
+        }
+
+        const languageSwitcher = document.getElementById("languageSwitcher");
+        let language = "en";
+
+        languageSwitcher.addEventListener("click", function(event) {
+            if (event.target.id === "englishFlag" && language === "es") {
+                switchToEnglish();
+                language = "en";
+                document.getElementById("spanishFlag").style.borderColor = "transparent";
+                document.getElementById("englishFlag").style.borderColor = "#FF6347";
+            } else if (event.target.id === "spanishFlag" && language === "en") {
+                switchToSpanish();
+                language = "es";
+                document.getElementById("englishFlag").style.borderColor = "transparent";
+                document.getElementById("spanishFlag").style.borderColor = "#FF6347";
+            }
+        });
+
+        function switchToSpanish() {
+            document.getElementById("aboutTab").textContent = "Sobre Mí";
+            document.getElementById("creditsTab").textContent = "Créditos";
+            document.getElementById("newsTab").textContent = "Noticias";
+            document.getElementById("gachaTab").textContent = "Gacha";
+            document.getElementById("patreonTab").textContent = "Patreon";
+            document.getElementById("roadmapTab").textContent = "Hoja de Ruta";
+            document.getElementById("statusTab").textContent = "Estado";
+            document.getElementById("addToServerBtn").textContent = "Añademe a tu Servidor!";
+            document.getElementById("aboutContent").querySelector("h2").textContent = "Sobre Mí:";
+            document.getElementById("aboutContent").querySelector("p").textContent = "Comencé el desarrollo de Paimon en 2021 como un proyecto secundario por las risas, pero desde entonces Paimon se convirtió en un proyecto mas serio con muchas funciones nuevas, como un sistema de perfiles completamente funcional, TierMaker, Una representación casi 1:1 del Gacha de GI y mucho más. ¿A qué estás esperando? ¡Haz clic en ese gran botón brillante y agrégala a tu propio servidor!";
+            document.getElementById("creditsContent").querySelector("h2").textContent = "Créditos:";
+            document.getElementById("newsContent").querySelector("h2").textContent = "Noticias:";
+            document.getElementById("gachaContent").querySelector("h2").textContent = "Banners del Gacha:";
+            document.getElementById("patreonContent").querySelector("h2").textContent = "Patreon:";
+            document.getElementById("PatreonSupp_1").textContent = "Apoyame a mi y al desarrollo de Paimon!";
+            document.getElementById("PatreonSupp_2").textContent = "Al apoyarme en Patreon, ayudas a que el desarrollo continúe! Y además te llevas unas cuantas cosas chulas aquí listadas:";
+            document.getElementById("PaiSupporter_1").textContent = "● ¡Accede a las funciones nuevas antes que nadie!";
+            document.getElementById("PaiSupporter_2").textContent = "● ¡Acceso a los canales beta en el servidor oficial!";
+            document.getElementById("PaiSupporter_3").textContent = "● ¡Acceso a todos mis posts de Patreon!";
+            document.getElementById("PaiPlus_1").textContent = "● Acceso a Paimon Plus (Acceso permanente)";
+            document.getElementById("PaiPlus_2").textContent = "● Acceso prioritario a todas las ventajas de Paimon Supporter.";
+            document.getElementById("PaiPlus_3").textContent = "● ¡Apoya aun mas el desarrollo de Paimon!";
+            document.getElementById("roadmapContent").querySelector("h2").textContent = "Hoja de Ruta:";
+            document.getElementById("next-update").textContent = "Nueva versión de Paimon: 24.0.P:1";
+            document.getElementById("web-release").textContent = "Lanzamiento de la web!";
+            document.getElementById("text-next-update").textContent = "Paimon 24.0 llegará el 2 de Diciembre e incluirá muchas cosas como... Los personajes de Fontaine para vuestros banners de perfil, personajes y armas hasta la versión 4.8 del juego también se agregarán al Gacha, comandos nuevos y mejorados para Gacha y algunas optimizaciones en el codigo!";
+            document.getElementById("text-web-release").textContent = "Bienvenidos a la nueva página web de Paimon, aqui podreís encontrar un montón de cosas interesantes como noticias sobre el bot, creditos a las increíbles personas que están detrás de ella y mucho más. ¡No olvideís echar un vistazo frecuentemente ya que se actualizará con frecuencia!";
+            const headerImage = document.getElementById("headerNews");
+            const newHeader = document.createElement("img");
+            newHeader.id = "headerNews";
+            newHeader.src = "https://file.garden/ZSGhSGTvf253N2gr/web/Estrellas_1.gif";
+            newHeader.alt = "Header Image";
+            headerImage.parentNode.replaceChild(newHeader, headerImage);
+            
+
+
+        }
+
+        function switchToEnglish() {
+            document.getElementById("aboutTab").textContent = "About Me";
+            document.getElementById("creditsTab").textContent = "Credits";
+            document.getElementById("newsTab").textContent = "News";
+            document.getElementById("gachaTab").textContent = "Gacha";
+            document.getElementById("patreonTab").textContent = "Patreon";
+            document.getElementById("roadmapTab").textContent = "Roadmap";
+            document.getElementById("statusTab").textContent = "Status";
+            document.getElementById("addToServerBtn").textContent = "Add me to your Server!";
+            document.getElementById("aboutContent").querySelector("h2").textContent = "About Me:";
+            document.getElementById("aboutContent").querySelector("p").textContent = "I started Paimon's development back in 2021 as a fun side project for the funsies, but since then Paimon became an actual project with so much new features such as a fully functional profile system, TierMaker, an almost 1:1 representation of GI's gacha and much more. So what are you waiting for? Click on that big shiny button and add her to your own server!";
+            document.getElementById("creditsContent").querySelector("h2").textContent = "Credits:";
+            document.getElementById("newsContent").querySelector("h2").textContent = "News:";
+            document.getElementById("gachaContent").querySelector("h2").textContent = "Gacha Banners:";
+            document.getElementById("patreonContent").querySelector("h2").textContent = "Patreon:";
+            document.getElementById("PatreonSupp_1").textContent = "Support me and Paimon's development!";
+            document.getElementById("PatreonSupp_2").textContent = "By supporting me on Patreon, you help keep the development going! And you get some cool stuff listed here:";
+            document.getElementById("PaiSupporter_1").textContent = "● Access to the newest features earlier than anyone!";
+            document.getElementById("PaiSupporter_2").textContent = "● Access to the beta channels in the official server!";
+            document.getElementById("PaiSupporter_3").textContent = "● Access to all my Patreon posts!";
+            document.getElementById("PaiPlus_1").textContent = "● Access to Paimon Plus (Permanent access)";
+            document.getElementById("PaiPlus_2").textContent = "● Priority access to all the Paimon Supporter perks.";
+            document.getElementById("PaiPlus_3").textContent = "● Support even further Paimon's development!";
+            document.getElementById("roadmapContent").querySelector("h2").textContent = "Roadmap:";
+            document.getElementById("next-update").textContent = "Paimon's next Update: 24.0.P:1";
+            document.getElementById("web-release").textContent = "Web release!";
+            document.getElementById("text-next-update").textContent = "Paimon 24.0 Is coming on December 2nd and will include plenty of things like... Fontaine characters to your profile banners, characters and weapons up to version 4.8 of the game will also be added to the Gacha, new and improved commands for the gacha and a few optimizations under the hood!";
+            document.getElementById("text-web-release").textContent = "Welcome to Paimon's new website, here you will be able to find a lot of cool stuff like news about the bot, credits to the amazing people that are behind it and much much more. Also dont forget to check in often since it will be updated frequently!";
+            const headerImage = document.getElementById("headerNews");
+            const newHeader = document.createElement("img");
+            newHeader.id = "headerNews";
+            newHeader.src = "https://file.garden/ZSGhSGTvf253N2gr/web/Estrellas_2.gif";
+            newHeader.alt = "Header Image";
+            headerImage.parentNode.replaceChild(newHeader, headerImage);
+
+
+
+        }
+
+        function addNewsItem(tid, did, title, imageUrl, content) {
+            const newsContainer = document.getElementById("newsContainer");
+            const newsItem = document.createElement("div");
+            newsItem.classList.add("news-item");
+
+            if (imageUrl) {
+                const img = document.createElement("img");
+                img.src = imageUrl;
+                newsItem.appendChild(img);
+            }
+
+            const newsTitle = document.createElement("h3");
+            newsTitle.textContent = title;
+            newsTitle.id = tid;
+            newsItem.appendChild(newsTitle);
+
+            const newsContent = document.createElement("p");
+            newsContent.id = did;
+            newsContent.textContent = content;
+            newsItem.appendChild(newsContent);
+
+            newsContainer.appendChild(newsItem);
+        }
+
+        
+        // Released on 18/11/2024:
+        addNewsItem("next-update", "text-next-update", "Paimon's next Update: 24.0.P:1", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Paimon 24.0 Is coming on December 2nd and will include plenty of things like... Fontaine characters to your profile banners, characters and weapons up to version 4.8 will also be added to the Gacha, new and improved commands for the gacha and a few optimizations under the hood!");
+        addNewsItem("web-release", "text-web-release", "Web release!", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Welcome to Paimon's new website, here you will be able to find a lot of cool stuff like news about the bot, credits to the amazing people that are behind it and much much more. Also dont forget to check in often since it will be updated frequently!");
+
+        function addGachaBanner(title, paimonIcon, charaIcon, imageUrl, startDate, endDate, isFuture = false) {
+            const gachaContainerId = isFuture ? "futureGachaContainer" : "currentGachaContainer";
+            const gachaContainer = document.getElementById(gachaContainerId);
+            const gachaBanner = document.createElement("div");
+            gachaBanner.classList.add("gacha-banner");
+
+            if (imageUrl) {
+                const img = document.createElement("img");
+                img.src = imageUrl;
+                gachaBanner.appendChild(img);
+            }
+
+            const gachaTitle = document.createElement("h3");
+            gachaTitle.textContent = title;
+            gachaBanner.appendChild(gachaTitle);
+
+            const gachaDates = document.createElement("p");
+            gachaDates.textContent = `${startDate} - ${endDate}`;
+            gachaBanner.appendChild(gachaDates);
+            
+            const gachaIcon = document.createElement("img");
+            gachaIcon.src = charaIcon;
+            gachaIcon.id = "gacha-Icon";
+            gachaBanner.appendChild(gachaIcon);
+
+            const iconPaimon = document.createElement("img");
+            iconPaimon.src = paimonIcon;
+            iconPaimon.id = "gacha-Paimon-Icon";
+            gachaBanner.appendChild(iconPaimon);
+
+
+            gachaContainer.appendChild(gachaBanner);
+        }
+
+        addGachaBanner("Permanent", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/araela_icon.png", "https://file.garden/ZSGhSGTvf253N2gr/web/perm_banner_test_NOTFINAL.webp", "Permanent", "Permanent");
+        addGachaBanner("Character Banner - Hu Tao", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Instagram_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/HuTao_Yelan_1.png", "1/10/2024", "18/10/2024");
+        addGachaBanner("Weapon Banner - Hu Tao", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Twitch_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/HuTao_Yelan_Armas.png", "1/10/2024", "18/10/2024");
+        
+        addGachaBanner("Character Banner - Furina", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Youtube_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_1.png", "18/10/2024", "3/11/2024", true);
+        addGachaBanner("Character Banner - Baizhu", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_2.png", "18/10/2024", "3/11/2024", true);
+        addGachaBanner("Weapon Banner - Furina/Baizhu", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/ArtStation_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_Armas_1.png", "18/10/2024", "3/11/2024", true);
+
+
+    </script>
+</body>
+</html>
