@@ -457,7 +457,6 @@
             padding: 15px 30px;
             margin: 0 5px;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -475,7 +474,6 @@
             padding: 15px 30px;
             margin: 0 5px;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -874,47 +872,6 @@
         addNewsItem("next-update", "text-next-update", "Paimon's next Update: 24.0.P:1", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Paimon 24.0 Is coming on December 2nd and will include plenty of things like... Fontaine characters to your profile banners, characters and weapons up to version 4.8 will also be added to the Gacha, new and improved commands for the gacha and a few optimizations under the hood!");
         addNewsItem("web-release", "text-web-release", "Web release!", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Welcome to Paimon's new website, here you will be able to find a lot of cool stuff like news about the bot, credits to the amazing people that are behind it and much much more. Also dont forget to check in often since it will be updated frequently!");
 
-        function addGachaBanner(title, paimonIcon, charaIcon, imageUrl, startDate, endDate, isFuture = false) {
-            const gachaContainerId = isFuture ? "futureGachaContainer" : "currentGachaContainer";
-            const gachaContainer = document.getElementById(gachaContainerId);
-            const gachaBanner = document.createElement("div");
-            gachaBanner.classList.add("gacha-banner");
-
-            if (imageUrl) {
-                const img = document.createElement("img");
-                img.src = imageUrl;
-                gachaBanner.appendChild(img);
-            }
-
-            const gachaTitle = document.createElement("h3");
-            gachaTitle.textContent = title;
-            gachaBanner.appendChild(gachaTitle);
-
-            const gachaDates = document.createElement("p");
-            gachaDates.textContent = `${startDate} - ${endDate}`;
-            gachaBanner.appendChild(gachaDates);
-            
-            const gachaIcon = document.createElement("img");
-            gachaIcon.src = charaIcon;
-            gachaIcon.id = "gacha-Icon";
-            gachaBanner.appendChild(gachaIcon);
-
-            const iconPaimon = document.createElement("img");
-            iconPaimon.src = paimonIcon;
-            iconPaimon.id = "gacha-Paimon-Icon";
-            gachaBanner.appendChild(iconPaimon);
-
-
-            gachaContainer.appendChild(gachaBanner);
-        }
-
-        addGachaBanner("Permanent", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/araela_icon.png", "https://file.garden/ZSGhSGTvf253N2gr/web/perm_banner_test_NOTFINAL.webp", "Permanent", "Permanent");
-        addGachaBanner("Character Banner - Hu Tao", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Instagram_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/HuTao_Yelan_1.png", "1/10/2024", "18/10/2024");
-        addGachaBanner("Weapon Banner - Hu Tao", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Twitch_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/HuTao_Yelan_Armas.png", "1/10/2024", "18/10/2024");
-        
-        addGachaBanner("Character Banner - Furina", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/Youtube_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_1.png", "18/10/2024", "3/11/2024", true);
-        addGachaBanner("Character Banner - Baizhu", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/xtwitter.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_2.png", "18/10/2024", "3/11/2024", true);
-        addGachaBanner("Weapon Banner - Furina/Baizhu", "https://file.garden/ZSGhSGTvf253N2gr/web/cute_smile.png", "https://file.garden/ZSGhSGTvf253N2gr/web/ArtStation_logo.png", "https://file.garden/ZSGhSGTvf253N2gr/Banners/Furina_Baizhu_Armas_1.png", "18/10/2024", "3/11/2024", true);
 
 
     </script>
