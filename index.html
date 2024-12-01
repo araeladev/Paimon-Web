@@ -796,6 +796,9 @@
             document.getElementById("web-release").textContent = "Lanzamiento de la web!";
             document.getElementById("text-next-update").textContent = "Paimon 24.0 llegará el 2 de Diciembre e incluirá muchas cosas como... Los personajes de Fontaine para vuestros banners de perfil, personajes y armas hasta la versión 4.8 del juego también se agregarán al Gacha, comandos nuevos y mejorados para Gacha y algunas optimizaciones en el codigo!";
             document.getElementById("text-web-release").textContent = "Bienvenidos a la nueva página web de Paimon, aqui podreís encontrar un montón de cosas interesantes como noticias sobre el bot, creditos a las increíbles personas que están detrás de ella y mucho más. ¡No olvideís echar un vistazo frecuentemente ya que se actualizará con frecuencia!";
+            document.getElementById("status-release").textContent = "Web actualizada!";
+            document.getElementById("status-release-text").textContent = "Desde hoy (1/12/2024) Habrá una nueva pestaña al lado de la de creditos para ver el estado de Paimon!";
+
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
             newHeader.id = "headerNews";
@@ -831,6 +834,8 @@
             document.getElementById("web-release").textContent = "Web release!";
             document.getElementById("text-next-update").textContent = "Paimon 24.0 Is coming on December 2nd and will include plenty of things like... Fontaine characters to your profile banners, characters and weapons up to version 4.8 of the game will also be added to the Gacha, new and improved commands for the gacha and a few optimizations under the hood!";
             document.getElementById("text-web-release").textContent = "Welcome to Paimon's new website, here you will be able to find a lot of cool stuff like news about the bot, credits to the amazing people that are behind it and much much more. Also dont forget to check in often since it will be updated frequently!";
+            document.getElementById("status-release").textContent = "Web updated!";
+            document.getElementById("status-release-text").textContent = "Starting today (1/12/2024) A new tab will be available next to the credits tab to access Paimon's status!";
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
             newHeader.id = "headerNews";
@@ -866,6 +871,8 @@
             newsContainer.appendChild(newsItem);
         }
 
+        // Released on 1/12/2024
+        addNewsItem("status-release", "status-release-text", "Web updated!", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Starting today (1/12/2024) A new tab will be available next to the credits tab to access Paimon's status!")
         
         // Released on 18/11/2024:
         addNewsItem("next-update", "text-next-update", "Paimon's next Update: 24.0.P:1", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Paimon 24.0 Is coming on December 2nd and will include plenty of things like... Fontaine characters to your profile banners, characters and weapons up to version 4.8 will also be added to the Gacha, new and improved commands for the gacha and a few optimizations under the hood!");
