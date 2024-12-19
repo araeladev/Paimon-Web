@@ -17,19 +17,30 @@
 
         .add-to-server-btn {
             position: absolute;
+            size: 10%;
             top: 15px;
             left: 15px;
             background-color: #5865F2;
             color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 3px;
+            padding: 10px 15px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, font-size 0.3s; 
         }
 
         .add-to-server-btn:hover {
             background-color: #717cf3;
+        }
+        
+        @media (max-width: 768px) {
+            .add-to-server-btn {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+                width: 20%;
+                max-width: 30%;
+                word-wrap: break-word;
+            }
         }
 
 
@@ -229,6 +240,9 @@
         }
 
         .news-item h3 {
+            text-align: center;
+            position: flex;
+            font-size: 40px;
             margin-top: 0;
             color: #f6dbb8;
         }
@@ -421,7 +435,7 @@
             color: #bbb;
             position: sticky;
             bottom: 0;
-            width: 97.88%;
+            width: 97.78%;
         }
 
         .footer a {
@@ -688,7 +702,7 @@
                 <img src="https://file.garden/ZSGhSGTvf253N2gr/web/easter_egg.gif" alt="Click me!", id="easter-egg-image">
             </a>
             </div>
-        <div class = "ab-ver">V:1.0.0.P:1 - 4/11/2024</div>
+        <div class = "ab-ver">V:1.0.2.P:1 - 19/12/2024</div>
         </div>
         
           
@@ -798,7 +812,9 @@
             document.getElementById("text-web-release").textContent = "Bienvenidos a la nueva página web de Paimon, aqui podreís encontrar un montón de cosas interesantes como noticias sobre el bot, creditos a las increíbles personas que están detrás de ella y mucho más. ¡No olvideís echar un vistazo frecuentemente ya que se actualizará con frecuencia!";
             document.getElementById("status-release").textContent = "Web actualizada!";
             document.getElementById("status-release-text").textContent = "Desde hoy (1/12/2024) Habrá una nueva pestaña al lado de la de creditos para ver el estado de Paimon!";
-
+            document.getElementById("holidays-message-2024").textContent = "¡Felices Fiestas!";
+            document.getElementById("holidays-message-2024-text").textContent = "Ahora que el año está llegando a su fin, quiero darles las gracias a todos los que han seguido apoyando y disfrutando de este increíble proyecto. ¡Vuestro apoyo hace que valga la pena!";
+            
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
             newHeader.id = "headerNews";
@@ -836,6 +852,8 @@
             document.getElementById("text-web-release").textContent = "Welcome to Paimon's new website, here you will be able to find a lot of cool stuff like news about the bot, credits to the amazing people that are behind it and much much more. Also dont forget to check in often since it will be updated frequently!";
             document.getElementById("status-release").textContent = "Web updated!";
             document.getElementById("status-release-text").textContent = "Starting today (1/12/2024) A new tab will be available next to the credits tab to access Paimon's status!";
+            document.getElementById("holidays-message-2024").textContent = "Happy Holidays!";
+            document.getElementById("holidays-message-2024-text").textContent = "As the year comes to an end, I want to thank everyone who has continued to support and enjoy this amazing project. Your support makes it all worthwhile!";
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
             newHeader.id = "headerNews";
@@ -870,6 +888,10 @@
 
             newsContainer.appendChild(newsItem);
         }
+
+
+        // Released on 24/12/2024
+        addNewsItem("holidays-message-2024", "holidays-message-2024-text", "Happy Holidays!", "https://file.garden/ZSGhSGTvf253N2gr/web/Paimon.png", "As the year comes to an end, I want to thank everyone who has continued to support and enjoy this amazing project. Your support makes it all worthwhile!")
 
         // Released on 1/12/2024
         addNewsItem("status-release", "status-release-text", "Web updated!", "https://file.garden/ZSGhSGTvf253N2gr/Systems/Gacha_INV.png", "Starting today (1/12/2024) A new tab will be available next to the credits tab to access Paimon's status!")
