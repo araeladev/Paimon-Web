@@ -516,15 +516,15 @@
 
     <!-- Tabs -->
     <div class="tabs">
+        <a id="statusTab" class="status-button" href='https://araela.dev' target="_blank">
+            New Webpage
+        </a> 
         <div id="newsTab" class="active-tab">News</div>
         <div id="patreonTab">Patreon</div>
-        <a id="trelloTab" class="trello-button" href='https://trello.com/b/s3Fdr28l/paimon' target="_blank">
-            Trello
-        </a> 
         <div id="aboutTab">About Me</div>
         <div id="creditsTab">Credits</div>
-        <a id="statusTab" class="status-button" href='https://araeladev.statuspage.io' target="_blank">
-            Status
+        <a id="statusTab" class="status-button" href='https://araela.dev' target="_blank">
+            New Webpage
         </a> 
     
     </div>
@@ -816,7 +816,9 @@
             document.getElementById("holidays-message-2024-text").textContent = "Ahora que el año está llegando a su fin, quiero darles las gracias a todos los que han seguido apoyando y disfrutando de este increíble proyecto. ¡Vuestro apoyo hace que valga la pena!";
             document.getElementById("ver-24-1").textContent = "¡Paimon 24.1 ya está disponible!";
             document.getElementById("ver-24-1-text").textContent = "La versión mas reciente de Paimon ya está disponible para todo el mundo, incluye arreglos de errores, eventos chulos y mucho mas!";
-            
+            document.getElementById("new-domain").textContent = "¡Nos trasladamos!";
+            document.getElementById("new-domain-text").textContent = "A partir de hoy nos trasladamos a nuestro nuevo dominio, asegurate de acceder a la nueva web para recibir las ultimas noticias ya sea de Paimon o de mi misma! (Lo tienes en la pestaña de arriba llamada: Página Nueva!)";
+
 
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
@@ -859,7 +861,9 @@
             document.getElementById("holidays-message-2024-text").textContent = "As the year comes to an end, I want to thank everyone who has continued to support and enjoy this amazing project. Your support makes it all worthwhile!";
             document.getElementById("ver-24-1").textContent = "Paimon 24.1 is out!";
             document.getElementById("ver-24-1-text").textContent = "Paimon's newest version is now available for everyone, including bug fixes, cool events and much more!";
-            
+            document.getElementById("new-domain").textContent = "We're moving out!";
+            document.getElementById("new-domain-text").textContent = "Starting today we're moving out to our new domain, make sure to go there instead to get the latest news and more about Paimon or myself! (You have it on the upper tab called: New Webpage!)";
+
             const headerImage = document.getElementById("headerNews");
             const newHeader = document.createElement("img");
             newHeader.id = "headerNews";
@@ -894,6 +898,10 @@
 
             newsContainer.appendChild(newsItem);
         }
+
+        // Released on 27/4/2025
+        addNewsItem("new-domain", "new-domain-text", "We're moving out!", "https://araela.dev/media/systems/Gacha_INV.png", "Starting today we're moving out to our new domain, make sure to go there instead to get the latest news and more about Paimon or myself! (You have it on the upper tab called: New Webpage!)")
+
 
         // Released on 16/2/2025
         addNewsItem("ver-24-1", "ver-24-1-text", "Paimon 24.1 is out!", "https://araela.dev/media/systems/Gacha_INV.png", "Paimon's newest version is now available for everyone, including bug fixes, cool events and much more!")
